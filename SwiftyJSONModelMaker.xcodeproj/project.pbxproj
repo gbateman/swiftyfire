@@ -10,6 +10,7 @@
 		372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF40C1E6A5F2C00C39C16 /* main.swift */; };
 		372AF4141E6A670000C39C16 /* JSONValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4131E6A670000C39C16 /* JSONValueNode.swift */; };
 		372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4151E6B99DB00C39C16 /* StringUtils.swift */; };
+		37A0BFA91E6D205E00EF9F07 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		372AF40C1E6A5F2C00C39C16 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		372AF4131E6A670000C39C16 /* JSONValueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueNode.swift; sourceTree = "<group>"; };
 		372AF4151E6B99DB00C39C16 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				372AF4151E6B99DB00C39C16 /* StringUtils.swift */,
+				37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */,
 				372AF4131E6A670000C39C16 /* JSONValueNode.swift */,
 				372AF40C1E6A5F2C00C39C16 /* main.swift */,
 			);
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */,
+				37A0BFA91E6D205E00EF9F07 /* Tokenizer.swift in Sources */,
 				372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */,
 				372AF4141E6A670000C39C16 /* JSONValueNode.swift in Sources */,
 			);
