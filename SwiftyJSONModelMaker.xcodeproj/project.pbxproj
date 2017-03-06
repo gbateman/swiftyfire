@@ -1,0 +1,266 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF40C1E6A5F2C00C39C16 /* main.swift */; };
+		372AF4141E6A670000C39C16 /* JSONValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4131E6A670000C39C16 /* JSONValueNode.swift */; };
+		372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4151E6B99DB00C39C16 /* StringUtils.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		372AF4071E6A5F2C00C39C16 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftyJSONModelMaker; sourceTree = BUILT_PRODUCTS_DIR; };
+		372AF40C1E6A5F2C00C39C16 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		372AF4131E6A670000C39C16 /* JSONValueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueNode.swift; sourceTree = "<group>"; };
+		372AF4151E6B99DB00C39C16 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		372AF4061E6A5F2C00C39C16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		372AF4001E6A5F2C00C39C16 = {
+			isa = PBXGroup;
+			children = (
+				372AF40B1E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+				372AF40A1E6A5F2C00C39C16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		372AF40A1E6A5F2C00C39C16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		372AF40B1E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {
+			isa = PBXGroup;
+			children = (
+				372AF4151E6B99DB00C39C16 /* StringUtils.swift */,
+				372AF4131E6A670000C39C16 /* JSONValueNode.swift */,
+				372AF40C1E6A5F2C00C39C16 /* main.swift */,
+			);
+			path = SwiftyJSONModelMaker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		372AF4081E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyJSONModelMaker" */;
+			buildPhases = (
+				372AF4051E6A5F2C00C39C16 /* Sources */,
+				372AF4061E6A5F2C00C39C16 /* Frameworks */,
+				372AF4071E6A5F2C00C39C16 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSONModelMaker;
+			productName = SwiftyJSONModelMaker;
+			productReference = 372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		372AF4011E6A5F2C00C39C16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Gregory Bateman";
+				TargetAttributes = {
+					372AF4081E6A5F2C00C39C16 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyJSONModelMaker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 372AF4001E6A5F2C00C39C16;
+			productRefGroup = 372AF40A1E6A5F2C00C39C16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				372AF4081E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		372AF4051E6A5F2C00C39C16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */,
+				372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */,
+				372AF4141E6A670000C39C16 /* JSONValueNode.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		372AF40E1E6A5F2C00C39C16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		372AF40F1E6A5F2C00C39C16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		372AF4111E6A5F2D00C39C16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		372AF4121E6A5F2D00C39C16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyJSONModelMaker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				372AF40E1E6A5F2C00C39C16 /* Debug */,
+				372AF40F1E6A5F2C00C39C16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyJSONModelMaker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				372AF4111E6A5F2D00C39C16 /* Debug */,
+				372AF4121E6A5F2D00C39C16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 372AF4011E6A5F2C00C39C16 /* Project object */;
+}
