@@ -32,6 +32,7 @@ enum Kind {
 
 enum State {
     case start
+    case error
     case whiteSpace
     case oneCharSym
     case backslash
@@ -44,6 +45,25 @@ enum State {
     case string
     case zero
     case number
+}
+
+func kind(from endState: State) -> Kind {
+    switch endState {
+    case .oneCharSym:
+        return .oneCharSym
+    case .escape:
+        return .escape
+    case .unicode4:
+        return .escape
+    case .string:
+        return .stringLiteral
+    case .zero:
+        return .numberLiteral
+    case .number:
+        return .numberLiteral
+    default:
+        return .none
+    }
 }
 
 struct StateMap {
@@ -109,6 +129,11 @@ class Token {
 class Tokenizer {
     var tokens: [Token]
     var transitions: [StateMap]
+    var illegalStringTransitions: [StateMap]
+    
+    enum TokenizerError: Error {
+        case illegalChar
+    }
     
     init() {
         self.transitions = Array<StateMap>()
@@ -139,17 +164,55 @@ class Tokenizer {
         }
         self.transitions.append(StateMap(.start, "0", .zero))
         
-        
-        
-        let letters: [String] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-        for char in letters {
-            self.transitions.append(StateMap(.start, char, .string))
-            self.transitions.append(StateMap(.string, char, .string))
+        for u in 0 ... 31 {
+            if let scalar = UnicodeScalar(u) {
+                let char = String(Character(scalar))
+                self.illegalStringTransitions.append(StateMap(.start, char, .error))
+                self.illegalStringTransitions.append(StateMap(.string, char, .error))
+            }
+        }
+        for u in 128 ... 159 {
+            if let scalar = UnicodeScalar(u) {
+                let char = String(Character(scalar))
+                self.illegalStringTransitions.append(StateMap(.start, char, .error))
+                self.illegalStringTransitions.append(StateMap(.string, char, .error))
+            }
         }
     }
     
-    func parseInput(_ input: String) {
-        let currentIndex = input.startIndex
+    func parseInput(_ input: String) throws {
+        var currentIndex = input.startIndex
         
+        var currentString: String = ""
+        var currentState: State = .start
+        
+        while currentIndex != input.endIndex {
+            let currentChar = input[currentIndex]
+            
+            func filter(_ stateMap: StateMap) -> Bool {
+                return stateMap.start == currentState && stateMap.char == String(currentChar)
+            }
+            
+            if currentState != .string && String(currentChar).rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
+                currentIndex = input.index(after: currentIndex)
+                continue
+            }
+            
+            if let transition = self.transitions.filter(filter).first {
+                currentString += String(currentChar)
+                currentState = transition.end
+            } else if self.illegalStringTransitions.filter(filter).first != nil {
+                throw TokenizerError.illegalChar
+            } else if (currentState == .start || currentState == .string) && self.illegalStringTransitions.filter(filter).first == nil {
+                currentString += String(currentChar)
+                currentState = .string
+            } else {
+                self.tokens.append(Token(kind: kind(from: currentState), string: currentString))
+                currentString = ""
+                currentState = .start
+            }
+            
+            currentIndex = input.index(after: currentIndex)
+        }
     }
 }
