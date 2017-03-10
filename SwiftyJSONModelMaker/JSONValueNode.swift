@@ -69,21 +69,21 @@ class JSONObjectNode: JSONValueNode {
             
             currentIndex = input.index(after: currentIndex)
             
-            guard var index = self.skipWhitespaces(input: input, startIndex: currentIndex) else { return nil }
-            currentIndex = index
+//            guard var index = self.skipWhitespaces(input: input, startIndex: currentIndex) else { return nil }
+//            currentIndex = index
+//            
+//            var object
+//            if input[currentIndex] == "{" {
+//                object = JSONObjectNode()
+//            } else if input[currentIndex] == "[" {
+//                object = JSONArrayNode()
+//            } else if input[currentIndex] == "\"" {
+//                object = JSONStringNode()
+//            } else if input[currentIndex] == "" {
+//                
+//            }
             
-            var object
-            if input[currentIndex] == "{" {
-                object = JSONObjectNode()
-            } else if input[currentIndex] == "[" {
-                object = JSONArrayNode()
-            } else if input[currentIndex] == "\"" {
-                object = JSONStringNode()
-            } else if input[currentIndex] == "" {
-                
-            }
-            
-            guard let _ = object.parse(input: input, startIndex: currentIndex) else { return nil }
+//            guard let _ = object.parse(input: input, startIndex: currentIndex) else { return nil }
             
             if currentIndex >= input.endIndex {
                 return nil

@@ -136,7 +136,9 @@ class Tokenizer {
     }
     
     init() {
+        self.tokens = Array<Token>()
         self.transitions = Array<StateMap>()
+        self.illegalStringTransitions = Array<StateMap>()
         let oneCharSyms: [String] = ["{", "}", "[", "]", ":", ",", "-", "+"]
         for char in oneCharSyms {
             self.transitions.append(StateMap(.start, char, .oneCharSym))
@@ -210,6 +212,7 @@ class Tokenizer {
                 self.tokens.append(Token(kind: kind(from: currentState), string: currentString))
                 currentString = ""
                 currentState = .start
+                continue
             }
             
             currentIndex = input.index(after: currentIndex)

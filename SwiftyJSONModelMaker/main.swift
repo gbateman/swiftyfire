@@ -18,16 +18,31 @@ func main() {
     input = input.trimmingCharacters(in: ignorableCharacters)
 //    print(input)
     
-    let object = JSONObjectNode()
-    
-    guard let _ = object.parse(input: input, startIndex: input.startIndex) else {
-        printError()
+    let tokenizer = Tokenizer()
+    do {
+        try tokenizer.parseInput(input)
+    } catch Tokenizer.TokenizerError.illegalChar {
+        print("FATAL ERROR: Control characters are not valid in JSON")
+        return
+    } catch {
+        print("ERROR: program will exit")
         return
     }
     
-    printHeader()
-    printImports()
-    print(object.swiftify())
+    for token in tokenizer.tokens {
+        print("[\(token.kind), \(token.string)]")
+    }
+    
+//    let object = JSONObjectNode()
+//    
+//    guard let _ = object.parse(input: input, startIndex: input.startIndex) else {
+//        printError()
+//        return
+//    }
+//    
+//    printHeader()
+//    printImports()
+//    print(object.swiftify())
     print("eof")
 }
 
