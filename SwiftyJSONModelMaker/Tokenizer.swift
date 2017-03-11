@@ -21,6 +21,7 @@ enum Kind {
     case dash
     case plus
     case e
+    case quote
     case whiteSpace
     case stringLiteral
     case escape
@@ -28,6 +29,25 @@ enum Kind {
     case trueLiteral
     case falseLiteral
     case nullLiteral
+    
+    init(_ state: State) {
+        switch state {
+        case .oneCharSym:
+            self = .oneCharSym
+        case .escape:
+            self = .escape
+        case .unicode4:
+            self = .escape
+        case .string:
+            self = .stringLiteral
+        case .zero:
+            self = .numberLiteral
+        case .number:
+            self = .numberLiteral
+        default:
+            self = .none
+        }
+    }
 }
 
 enum State {
@@ -47,25 +67,6 @@ enum State {
     case number
 }
 
-func kind(from endState: State) -> Kind {
-    switch endState {
-    case .oneCharSym:
-        return .oneCharSym
-    case .escape:
-        return .escape
-    case .unicode4:
-        return .escape
-    case .string:
-        return .stringLiteral
-    case .zero:
-        return .numberLiteral
-    case .number:
-        return .numberLiteral
-    default:
-        return .none
-    }
-}
-
 struct StateMap {
     var start: State
     var char: String
@@ -78,9 +79,13 @@ struct StateMap {
     }
 }
 
-class Token {
+class Token: CustomStringConvertible {
     var kind: Kind
     var string: String
+    
+    var description: String {
+        return "<kind:\(kind),string:\(string)>"
+    }
     
     init(kind: Kind, string: String) {
         self.kind = kind
@@ -119,6 +124,8 @@ class Token {
                 self.kind = .dash
             case "+":
                 self.kind = .plus
+            case "\"":
+                self.kind = .quote
             default:
                 break
             }
@@ -139,7 +146,7 @@ class Tokenizer {
         self.tokens = Array<Token>()
         self.transitions = Array<StateMap>()
         self.illegalStringTransitions = Array<StateMap>()
-        let oneCharSyms: [String] = ["{", "}", "[", "]", ":", ",", "-", "+"]
+        let oneCharSyms: [String] = ["{", "}", "[", "]", ":", ",", "-", "+", "\""]
         for char in oneCharSyms {
             self.transitions.append(StateMap(.start, char, .oneCharSym))
         }
@@ -180,6 +187,8 @@ class Tokenizer {
                 self.illegalStringTransitions.append(StateMap(.string, char, .error))
             }
         }
+        self.transitions.append(StateMap(.string, "\\", .error))
+        self.transitions.append(StateMap(.string, "\"", .error))
     }
     
     func parseInput(_ input: String) throws {
@@ -187,13 +196,26 @@ class Tokenizer {
         
         var currentString: String = ""
         var currentState: State = .start
+        var currentChar: Character = input[currentIndex]
         
-        while currentIndex != input.endIndex {
-            let currentChar = input[currentIndex]
-            
-            func filter(_ stateMap: StateMap) -> Bool {
-                return stateMap.start == currentState && stateMap.char == String(currentChar)
-            }
+        func filter(_ stateMap: StateMap) -> Bool {
+            return stateMap.start == currentState && stateMap.char == String(currentChar)
+        }
+        
+        func isControlCharacter() -> Bool {
+            return self.illegalStringTransitions.filter(filter).first != nil
+        }
+        
+        func isValidStringTransition() -> Bool {
+            return (currentState == .start || currentState == .string)
+                && self.illegalStringTransitions.filter(filter).first == nil
+        }
+        
+        guard let eotScalar = UnicodeScalar(4) else { return }
+        let eot = Character(eotScalar)
+        
+        while currentIndex != input.endIndex && input[currentIndex] != eot {
+            currentChar = input[currentIndex]
             
             if currentState != .string && String(currentChar).rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
                 currentIndex = input.index(after: currentIndex)
@@ -201,15 +223,22 @@ class Tokenizer {
             }
             
             if let transition = self.transitions.filter(filter).first {
-                currentString += String(currentChar)
-                currentState = transition.end
-            } else if self.illegalStringTransitions.filter(filter).first != nil {
+                if currentState == .string {
+                    self.tokens.append(Token(kind: Kind(currentState), string: currentString))
+                    currentString = ""
+                    currentState = .start
+                    continue
+                } else {
+                    currentString += String(currentChar)
+                    currentState = transition.end
+                }
+            } else if isControlCharacter() {
                 throw TokenizerError.illegalChar
-            } else if (currentState == .start || currentState == .string) && self.illegalStringTransitions.filter(filter).first == nil {
+            } else if isValidStringTransition() {
                 currentString += String(currentChar)
                 currentState = .string
             } else {
-                self.tokens.append(Token(kind: kind(from: currentState), string: currentString))
+                self.tokens.append(Token(kind: Kind(currentState), string: currentString))
                 currentString = ""
                 currentState = .start
                 continue
@@ -217,5 +246,7 @@ class Tokenizer {
             
             currentIndex = input.index(after: currentIndex)
         }
+        // Since the last char never gets checked for transitions
+        self.tokens.append(Token(kind: Kind(currentState), string: currentString))
     }
 }

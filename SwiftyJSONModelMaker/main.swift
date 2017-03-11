@@ -25,12 +25,12 @@ func main() {
         print("FATAL ERROR: Control characters are not valid in JSON")
         return
     } catch {
-        print("ERROR: program will exit")
+        print("ERROR: Program will exit")
         return
     }
     
     for token in tokenizer.tokens {
-        print("[\(token.kind), \(token.string)]")
+        print(token)
     }
     
 //    let object = JSONObjectNode()
