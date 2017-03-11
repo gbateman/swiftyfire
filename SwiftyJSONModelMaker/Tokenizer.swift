@@ -30,7 +30,7 @@ enum Kind {
     case falseLiteral
     case nullLiteral
     
-    init(_ state: State) {
+    fileprivate init(_ state: State) {
         switch state {
         case .oneCharSym:
             self = .oneCharSym
@@ -50,7 +50,7 @@ enum Kind {
     }
 }
 
-enum State {
+fileprivate enum State {
     case start
     case error
     case whiteSpace
@@ -67,7 +67,7 @@ enum State {
     case number
 }
 
-struct StateMap {
+fileprivate struct StateMap {
     var start: State
     var char: String
     var end: State
@@ -135,8 +135,8 @@ class Token: CustomStringConvertible {
 
 class Tokenizer {
     var tokens: [Token]
-    var transitions: [StateMap]
-    var illegalStringTransitions: [StateMap]
+    private var transitions: [StateMap]
+    private var illegalStringTransitions: [StateMap]
     
     enum TokenizerError: Error {
         case illegalChar
