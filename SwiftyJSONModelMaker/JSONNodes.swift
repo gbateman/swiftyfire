@@ -77,40 +77,40 @@ class JSONArrayNode: JSONValueNode { // TODO: Fix
     var elements: [JSONValueNode] = []
     var elementType: String = "Bool"
     
-    override init(input: String) {
-        super.init(input: input)
+    override init() {
+        super.init()
         
         self.type = "Array" // TODO: Fix
     }
 }
 
 class JSONNumberNode: JSONValueNode {
-    override init(input: String) {
-        super.init(input: input)
+    override init() {
+        super.init()
         
         self.type = "Double"
     }
 }
 
 class JSONStringNode: JSONValueNode {
-    override init(input: String) {
-        super.init(input: input)
+    override init() {
+        super.init()
         
         self.type = "String"
     }
 }
 
 class JSONBoolNode: JSONValueNode {
-    override init(input: String) {
-        super.init(input: input)
+    override init() {
+        super.init()
         
         self.type = "Bool"
     }
 }
 
 class JSONNullNode: JSONValueNode {
-    override init(input: String) {
-        super.init(input: input)
+    override init() {
+        super.init()
         
         self.type = ""
     }
