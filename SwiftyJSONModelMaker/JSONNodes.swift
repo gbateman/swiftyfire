@@ -85,6 +85,8 @@ class JSONArrayNode: JSONValueNode { // TODO: Fix
 }
 
 class JSONNumberNode: JSONValueNode {
+    var value: Double = 0
+    
     override init() {
         super.init()
         

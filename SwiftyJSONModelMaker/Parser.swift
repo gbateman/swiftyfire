@@ -20,27 +20,66 @@ class Parser {
     enum ParserError: Error {
         case NoTokens
         case InvalidToken(ofKind: Kind, expected: [Kind])
+        case InvalidValue(_ value: String)
     }
     
     var topLevelNode: JSONValueNode?
     
+    private func getNextToken(from tokens: [Token]) throws -> Token {
+        if let first = tokens.first {
+            return first
+        } else {
+            throw ParserError.NoTokens
+        }
+    }
+    
+    private func requireNextTokenOfKind(_ kind: Kind, from tokens: [Token], with additionalExpected: [Kind] = []) throws {
+        try self.requireNextTokenOfKinds([kind], from: tokens)
+    }
+    
+    private func requireNextTokenOfKinds(_ kinds: [Kind], from tokens: [Token]) throws {
+        let token: Token
+        try token = self.getNextToken(from: tokens)
+        
+        var matches = false
+        for kind in kinds {
+            if token.kind == kind {
+                matches = true
+                break
+            }
+        }
+        
+        guard matches else {
+            throw ParserError.InvalidToken(ofKind: token.kind, expected: kinds)
+        }
+    }
+    
     func parse(tokens: [Token]) throws {
         var tokens = tokens
+        do {
+            try self.topLevelNode = parseValue(from: &tokens)
+        } catch {
+            throw error
+        }
+    }
+    
+    private func parseValue(from tokens: inout [Token]) throws -> JSONValueNode {
+        var value = JSONValueNode()
         do {
             if let first = tokens.first {
                 switch first.kind {
                 case .lbrace:
-                    try self.topLevelNode = self.parseObject(from: &tokens)
+                    try value = self.parseObject(from: &tokens)
                 case .lbrack:
-                    try self.topLevelNode = self.parseArray(from: &tokens)
+                    try value = self.parseArray(from: &tokens)
                 case .quote:
-                    try self.topLevelNode = self.parseString(from: &tokens)
+                    try value = self.parseString(from: &tokens)
                 case .dash, .numberLiteral:
-                    try self.topLevelNode = self.parseNumber(from: &tokens)
+                    try value = self.parseNumber(from: &tokens)
                 case .trueLiteral, .falseLiteral:
-                    try self.topLevelNode = self.parseBool(from: &tokens)
+                    try value = self.parseBool(from: &tokens)
                 case .nullLiteral:
-                    try self.topLevelNode = self.parseNull(from: &tokens)
+                    try value = self.parseNull(from: &tokens)
                 default:
                     throw ParserError.InvalidToken(ofKind: first.kind, expected: [.lbrace, .lbrack, .quote, .dash, .numberLiteral, .trueLiteral, .falseLiteral, .nullLiteral])
                 }
@@ -50,89 +89,139 @@ class Parser {
         } catch {
             throw error
         }
+        return value
     }
     
-    func parseObject(from tokens: inout [Token]) throws -> JSONObjectNode {
+    private func parseObject(from tokens: inout [Token]) throws -> JSONObjectNode {
         let object = JSONObjectNode()
         
-        var token: Token
-        
-        if let first = tokens.first {
-            token = first
-        } else {
-            throw ParserError.NoTokens
-        }
-        
-        guard token.kind == .lbrace else {
-            throw ParserError.InvalidToken(ofKind: token.kind, expected: [.quote, .rbrace])
-        }
+        try self.requireNextTokenOfKind(.lbrace, from: tokens)
         
         tokens.removeFirst()
         
-        while let first = tokens.first, first.kind == .quote {
+        while let first = tokens.first, first.kind == .quote || first.kind == .comma {
+            if object.children.count > 0 {
+                try self.requireNextTokenOfKind(.comma, from: tokens)
+                
+                tokens.removeFirst()
+            }
+            
             var key = ""
             
             tokens.removeFirst()
             
             while let first = tokens.first, first.kind == .stringLiteral || first.kind == .escape {
-                token = first
-                
-                key += token.string
+                key += first.string
                 
                 tokens.removeFirst()
             }
             
-            if let first = tokens.first {
-                token = first
-            } else {
-                throw ParserError.NoTokens
-            }
+            try self.requireNextTokenOfKind(.quote, from: tokens)
             
-            guard token.kind == .quote else {
-                throw ParserError.InvalidToken(ofKind: token.kind, expected: [.quote])
-            }
+            tokens.removeFirst()
             
-            if let first = tokens.first {
-                token = first
-            } else {
-                throw ParserError.NoTokens
-            }
+            try self.requireNextTokenOfKind(.colon, from: tokens)
             
-            guard token.kind == .colon else {
-                throw ParserError.InvalidToken(ofKind: token.kind, expected: [.colon])
-            }
+            tokens.removeFirst()
+            
+            let value: JSONValueNode
+            try value = self.parseValue(from: &tokens)
+            object.children[key] = value
         }
         
-        if let first = tokens.first {
-            token = first
-        } else {
-            throw ParserError.NoTokens
-        }
+        try self.requireNextTokenOfKind(.rbrace, from: tokens)
         
-        guard token.kind == .rbrace else {
-            throw ParserError.InvalidToken(ofKind: token.kind, expected: [.rbrace])
-        }
+        tokens.removeFirst()
         
         return object
     }
     
-    func parseArray(from tokens: inout [Token]) throws -> JSONArrayNode {
-        return JSONArrayNode()
+    private func parseArray(from tokens: inout [Token]) throws -> JSONArrayNode {
+        let array = JSONArrayNode()
+        
+        try self.requireNextTokenOfKind(.lbrack, from: tokens)
+        
+        tokens.removeFirst()
+        
+        while let first = tokens.first, first.kind != .rbrack {
+            if array.elements.count > 0 {
+                try self.requireNextTokenOfKind(.comma, from: tokens)
+                
+                tokens.removeFirst()
+            }
+            
+            let value: JSONValueNode
+            try value = self.parseValue(from: &tokens)
+            array.elements.append(value)
+        }
+        
+        try self.requireNextTokenOfKind(.rbrace, from: tokens)
+        
+        return array
     }
     
-    func parseNumber(from tokens: inout [Token]) throws -> JSONNumberNode {
-        return JSONNumberNode()
+    private func parseNumber(from tokens: inout [Token]) throws -> JSONNumberNode {
+        var number = JSONNumberNode()
+        
+        var token: Token
+        
+        token = try self.getNextToken(from: tokens)
+        
+        var isNegative = false
+        if token.kind == .dash {
+            isNegative = true
+            tokens.removeFirst()
+        }
+        
+        try self.requireNextTokenOfKinds([.zero, .numberLiteral], from: tokens)
+        
+        token = try self.getNextToken(from: tokens)
+        
+        guard let whole = Double(token.string) else {
+            throw ParserError.InvalidValue(token.string)
+        }
+        number.value = whole
+        
+        tokens.removeFirst()
+        
+        token = try self.getNextToken(from: tokens)
+        
+        if token.kind == .dot {
+            tokens.removeFirst()
+            
+            try self.requireNextTokenOfKind(.numberLiteral, from: tokens)
+            
+            token = try self.getNextToken(from: tokens)
+            
+            guard let fraction = Double(token.string) else {
+                throw ParserError.InvalidValue(token.string)
+            }
+            number.value += fraction * pow(10, -Double(token.string.characters.count))
+            
+            tokens.removeFirst()
+        }
+        
+        token = try self.getNextToken(from: tokens)
+        
+        if token.kind == .e {
+            tokens.removeFirst()
+            
+            var isNegativeExponent = false
+        }
+        
+        
+        return number
     }
     
-    func parseString(from tokens: inout [Token]) throws -> JSONStringNode {
+    private func parseString(from tokens: inout [Token]) throws -> JSONStringNode {
         return JSONStringNode()
     }
     
-    func parseBool(from tokens: inout [Token]) throws -> JSONBoolNode {
+    private func parseBool(from tokens: inout [Token]) throws -> JSONBoolNode {
         return JSONBoolNode()
     }
     
-    func parseNull(from tokens: inout [Token]) throws -> JSONNullNode {
+    private func parseNull(from tokens: inout [Token]) throws -> JSONNullNode {
         return JSONNullNode()
     }
 }

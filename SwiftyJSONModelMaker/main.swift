@@ -19,8 +19,10 @@ func main() {
 //    print(input)
     
     let tokenizer = Tokenizer()
+    let parser = Parser()
     do {
-        try tokenizer.parseInput(input)
+        try tokenizer.tokenize(input)
+        try parser.parse(tokens: tokenizer.tokens)
     } catch Tokenizer.TokenizerError.illegalChar {
         print("FATAL ERROR: Control characters are not valid in JSON")
         return

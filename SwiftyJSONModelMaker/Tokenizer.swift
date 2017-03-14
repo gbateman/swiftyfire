@@ -25,6 +25,7 @@ enum Kind {
     case whiteSpace
     case stringLiteral
     case escape
+    case zero
     case numberLiteral
     case trueLiteral
     case falseLiteral
@@ -41,7 +42,7 @@ enum Kind {
         case .string:
             self = .stringLiteral
         case .zero:
-            self = .numberLiteral
+            self = .zero
         case .number:
             self = .numberLiteral
         default:
@@ -129,7 +130,7 @@ class Token: CustomStringConvertible {
             default:
                 break
             }
-        }
+        } else if self.kind == .
     }
 }
 
@@ -191,7 +192,7 @@ class Tokenizer {
         self.transitions.append(StateMap(.string, "\"", .error))
     }
     
-    func parseInput(_ input: String) throws {
+    func tokenize(_ input: String) throws {
         var currentIndex = input.startIndex
         
         var currentString: String = ""
