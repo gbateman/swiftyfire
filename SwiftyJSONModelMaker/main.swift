@@ -16,13 +16,14 @@ func main() {
     }
     let ignorableCharacters = CharacterSet.controlCharacters.union(CharacterSet.whitespacesAndNewlines)
     input = input.trimmingCharacters(in: ignorableCharacters)
-//    print(input)
     
     let tokenizer = Tokenizer()
     let parser = Parser()
+    let swiftifier = Swiftifier()
     do {
         try tokenizer.tokenize(input)
         try parser.parse(tokens: tokenizer.tokens)
+        try swiftifier.swiftifyJSON(parser.topLevelNode)
     } catch Tokenizer.TokenizerError.illegalChar {
         print("FATAL ERROR: Control characters are not valid in JSON")
         return
@@ -31,21 +32,9 @@ func main() {
         return
     }
     
-    for token in tokenizer.tokens {
-        print(token)
-    }
+    print(swiftifier.swiftifiedJSON)
     
-//    let object = JSONObjectNode()
-//    
-//    guard let _ = object.parse(input: input, startIndex: input.startIndex) else {
-//        printError()
-//        return
-//    }
-//    
-//    printHeader()
-//    printImports()
-//    print(object.swiftify())
-    print("eof")
+    print("end of output")
 }
 
 func printError() {

@@ -10,6 +10,7 @@
 		372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF40C1E6A5F2C00C39C16 /* main.swift */; };
 		372AF4141E6A670000C39C16 /* JSONNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4131E6A670000C39C16 /* JSONNodes.swift */; };
 		372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4151E6B99DB00C39C16 /* StringUtils.swift */; };
+		374D7F971E78C32300752B3E /* Swiftifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D7F961E78C32300752B3E /* Swiftifier.swift */; };
 		37A0BFA91E6D205E00EF9F07 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */; };
 		37A0BFAB1E748A7D00EF9F07 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFAA1E748A7D00EF9F07 /* Parser.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		372AF40C1E6A5F2C00C39C16 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		372AF4131E6A670000C39C16 /* JSONNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONNodes.swift; sourceTree = "<group>"; };
 		372AF4151E6B99DB00C39C16 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		374D7F961E78C32300752B3E /* Swiftifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swiftifier.swift; sourceTree = "<group>"; };
 		37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		37A0BFAA1E748A7D00EF9F07 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 				372AF4131E6A670000C39C16 /* JSONNodes.swift */,
 				37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */,
 				37A0BFAA1E748A7D00EF9F07 /* Parser.swift */,
+				374D7F961E78C32300752B3E /* Swiftifier.swift */,
 				372AF40C1E6A5F2C00C39C16 /* main.swift */,
 			);
 			path = SwiftyJSONModelMaker;
@@ -137,6 +140,7 @@
 				37A0BFAB1E748A7D00EF9F07 /* Parser.swift in Sources */,
 				372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */,
 				372AF4141E6A670000C39C16 /* JSONNodes.swift in Sources */,
+				374D7F971E78C32300752B3E /* Swiftifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

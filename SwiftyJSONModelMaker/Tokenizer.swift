@@ -130,7 +130,7 @@ class Token: CustomStringConvertible {
             default:
                 break
             }
-        } else if self.kind == .
+        }
     }
 }
 
@@ -140,7 +140,7 @@ class Tokenizer {
     private var illegalStringTransitions: [StateMap]
     
     enum TokenizerError: Error {
-        case illegalChar
+        case illegalChar(_: Character)
     }
     
     init() {
@@ -234,7 +234,7 @@ class Tokenizer {
                     currentState = transition.end
                 }
             } else if isControlCharacter() {
-                throw TokenizerError.illegalChar
+                throw TokenizerError.illegalChar(currentChar)
             } else if isValidStringTransition() {
                 currentString += String(currentChar)
                 currentState = .string
