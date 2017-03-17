@@ -22,23 +22,17 @@ func main() {
     let swiftifier = Swiftifier()
     do {
         try tokenizer.tokenize(input)
+        print(tokenizer.tokens)
         try parser.parse(tokens: tokenizer.tokens)
         try swiftifier.swiftifyJSON(parser.topLevelNode)
-    } catch Tokenizer.TokenizerError.illegalChar {
-        print("FATAL ERROR: Control characters are not valid in JSON")
-        return
     } catch {
-        print("ERROR: Program will exit")
+        print("ERROR: \(error), Program will exit")
         return
     }
     
     print(swiftifier.swiftifiedJSON)
     
     print("end of output")
-}
-
-func printError() {
-    print("Error in creating JSON Model")
 }
 
 func printHeader() {

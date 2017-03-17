@@ -22,4 +22,15 @@ extension String {
         }
         return camelCasedSelf
     }
+    
+    var capitalCased: String {
+        let delimiters = CharacterSet(charactersIn: " _")
+        let words = self.components(separatedBy: delimiters)
+        
+        var capitalCasedSelf = ""
+        for word in words {
+            capitalCasedSelf += word.capitalized
+        }
+        return capitalCasedSelf
+    }
 }

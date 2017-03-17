@@ -136,7 +136,9 @@ class Parser {
             array.elements.append(value)
         }
         
-        try self.requireNextTokenOfKind(.rbrace, from: tokens)
+        try self.requireNextTokenOfKind(.rbrack, from: tokens)
+        
+        tokens.removeFirst()
         
         return array
     }
@@ -223,7 +225,7 @@ class Parser {
         
         tokens.removeFirst()
         
-        while let first = tokens.first, first.kind == .stringLiteral || first.kind == .escape {
+        while let first = tokens.first, first.kind != .quote {
             string.value += first.string
             
             tokens.removeFirst()

@@ -11,6 +11,7 @@ import Foundation
 class Swiftifier {
     enum SwiftifierError: Error {
         case notAnObject
+        case emptyArray
     }
     
     var swiftifiedJSON: String = ""
@@ -18,11 +19,37 @@ class Swiftifier {
     func swiftifyJSON(_ value: JSONValueNode) throws {
         var swiftOutput = ""
         if let object = value as? JSONObjectNode {
+            object.name = "TopLevelObject" // TODO: Replace with file name
+            self.giveNamesToNodes(in: object)
             swiftOutput += self.swiftifyObject(object)
         } else {
             throw SwiftifierError.notAnObject
         }
         self.swiftifiedJSON = swiftOutput
+    }
+    
+    private func giveNamesToNodes(in node: JSONObjectNode) {
+        for key in node.children.keys {
+            if let object = node.children[key] as? JSONObjectNode {
+                object.name = key.capitalCased
+                self.giveNamesToNodes(in: object)
+            } else if let array = node.children[key] as? JSONArrayNode {
+                array.elementType = key.capitalCased + "Element"
+                self.giveNamesToNodes(in: array)
+            }
+        }
+    }
+    
+    private func giveNamesToNodes(in node: JSONArrayNode) {
+        for element in node.elements {
+            if let object = element as? JSONObjectNode {
+                object.name = node.elementType.capitalCased
+                self.giveNamesToNodes(in: object)
+            } else if let array = element as? JSONArrayNode {
+                array.elementType = node.elementType + "Element"
+                self.giveNamesToNodes(in: array)
+            }
+        }
     }
     
     private func swiftifyObject(_ object: JSONObjectNode) -> String {
@@ -41,19 +68,30 @@ class Swiftifier {
             var swiftOutput = "init(json: JSON) {\n"
             for key in object.children.keys {
                 if let value: JSONValueNode = object.children[key] {
-                    if value is JSONObjectNode {
-                        swiftOutput += "self.\(key.camelCased) = \(object.type)(json: json[\"\(key)\"])\n"
-                    } else if let value = value as? JSONArrayNode {
-                        swiftOutput += "self.\(key.camelCased) = Array<\(value.elementType)>()\n"
-                        swiftOutput += "for \(value.elementType.lowercased()) in json[\"\(key)\"].arrayValue {\n"
-                        swiftOutput += "self.\(key.camelCased).append()\n"
-                        swiftOutput += "}\n"
-                    } else {
-                        swiftOutput += "self.\(key.camelCased) = json[\"\(key)\"].\(value.type.lowercased())Value\n"
-                    }
+                    swiftOutput += swiftifyValueInstantiation(for: key, and: value)
                 }
             }
             swiftOutput += "}\n"
+            return swiftOutput
+        }
+        
+        func swiftifyValueInstantiation(for key: String, and value: JSONValueNode) -> String {
+            var swiftOutput = ""
+            swiftOutput += "self.\(key.camelCased) = \(swiftifyAssignment(for: key, and: value))"
+            return swiftOutput
+        }
+        
+        func swiftifyAssignment(for key: String, and value: JSONValueNode) -> String {
+            var swiftOutput = ""
+            if let object = value as? JSONObjectNode {
+                swiftOutput += "\(object.type)(json: json[\"\(key)\"])\n"
+            } else if let array = value as? JSONArrayNode {
+                swiftOutput += "json[\"\(key)\"].\(value.type.lowercased())Value.map({ element in\n"
+                swiftOutput += "return \(swiftifyAssignment(for: "asdfasdfasdfasdferror", and: JSONValueNode()))"
+                swiftOutput += "})\n"
+            } else {
+                swiftOutput += "json[\"\(key)\"].\(value.type.lowercased())Value\n"
+            }
             return swiftOutput
         }
         

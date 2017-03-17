@@ -85,7 +85,7 @@ class Token: CustomStringConvertible {
     var string: String
     
     var description: String {
-        return "<kind:\(kind),string:\(string)>"
+        return "<\(kind),\(string)>"
     }
     
     init(kind: Kind, string: String) {
