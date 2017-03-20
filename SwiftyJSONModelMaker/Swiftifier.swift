@@ -31,18 +31,20 @@ class Swiftifier {
     // TODO: fix naming
     private func giveNamesToNodes(in node: JSONObjectNode) {
         for key in node.children.keys {
-            if let object = node.children[key] as? JSONObjectNode {
+            guard let value = node.children[key] else { return }
+            
+            if let object = value as? JSONObjectNode {
                 object.name = key.capitalCased
                 self.giveNamesToNodes(in: object)
-            } else if let array = node.children[key] as? JSONArrayNode {
+            } else if let array = value as? JSONArrayNode {
+                self.giveNamesToNodes(in: array)
                 if let object = array.elements.first as? JSONObjectNode {
                     array.elementType = object.name
                 } else if let subarray = array.elements.first as? JSONArrayNode {
-                    array.elementType = "lkjfdsa"
+                    array.elementType = "[\(subarray.elementType)]"
                 } else if let value = array.elements.first {
-                    array.elementType = "lkjfdsa"
+                    array.elementType = value.type
                 }
-                self.giveNamesToNodes(in: array)
             }
         }
     }
@@ -53,8 +55,14 @@ class Swiftifier {
                 object.name = node.elementType.capitalCased
                 self.giveNamesToNodes(in: object)
             } else if let array = element as? JSONArrayNode {
-                array.elementType = node.elementType + "Element"
                 self.giveNamesToNodes(in: array)
+                if let object = array.elements.first as? JSONObjectNode {
+                    array.elementType = object.name
+                } else if let subarray = array.elements.first as? JSONArrayNode {
+                    array.elementType = "[\(subarray.elementType)]"
+                } else if let value = array.elements.first {
+                    array.elementType = value.type
+                }
             }
         }
     }
@@ -97,7 +105,7 @@ class Swiftifier {
             if let object = value as? JSONObjectNode {
                 swiftOutput += "\(object.type)(json: \(key))\n"
             } else if let array = value as? JSONArrayNode {
-                swiftOutput += "\(key).\(value.type.lowercased())Value.map({ element in\n"
+                swiftOutput += "\(key).arrayValue.map({ element in\n"
                 if let first = array.elements.first {
                     swiftOutput += "return \(swiftifyAssignment(for: "element", and: first))"
                 } else {
