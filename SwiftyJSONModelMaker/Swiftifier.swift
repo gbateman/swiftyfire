@@ -37,14 +37,8 @@ class Swiftifier {
                 object.name = key.capitalCased
                 self.giveNamesToNodes(in: object)
             } else if let array = value as? JSONArrayNode {
+                array.name = key.capitalCased
                 self.giveNamesToNodes(in: array)
-                if let object = array.elements.first as? JSONObjectNode {
-                    array.elementType = object.name
-                } else if let subarray = array.elements.first as? JSONArrayNode {
-                    array.elementType = "[\(subarray.elementType)]"
-                } else if let value = array.elements.first {
-                    array.elementType = value.type
-                }
             }
         }
     }
@@ -52,17 +46,11 @@ class Swiftifier {
     private func giveNamesToNodes(in node: JSONArrayNode) {
         for element in node.elements {
             if let object = element as? JSONObjectNode {
-                object.name = node.elementType.capitalCased
+                object.name = node.name.capitalCased
                 self.giveNamesToNodes(in: object)
             } else if let array = element as? JSONArrayNode {
+                array.name = node.name.capitalCased
                 self.giveNamesToNodes(in: array)
-                if let object = array.elements.first as? JSONObjectNode {
-                    array.elementType = object.name
-                } else if let subarray = array.elements.first as? JSONArrayNode {
-                    array.elementType = "[\(subarray.elementType)]"
-                } else if let value = array.elements.first {
-                    array.elementType = value.type
-                }
             }
         }
     }
@@ -129,7 +117,7 @@ class Swiftifier {
         }
         
         var swiftOutput = ""
-        swiftOutput += "class \(object.type) {\n"
+        swiftOutput += "class \(object.name) {\n"
         swiftOutput += swiftifyVariableDeclarations()
         swiftOutput += swiftifyInit()
         swiftOutput += swiftifyClassDeclarations()

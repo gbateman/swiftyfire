@@ -14,7 +14,7 @@ class JSONValueNode {
 
 class JSONObjectNode: JSONValueNode {
     var children: [String: JSONValueNode] = [:]
-    var name: String = "gregsclass"
+    var name: String = "Greg"
     
     override init() {
         super.init()
@@ -25,6 +25,7 @@ class JSONObjectNode: JSONValueNode {
 
 class JSONArrayNode: JSONValueNode { // TODO: Fix
     var elements: [JSONValueNode] = []
+    var name: String = "GregA"
     var elementType: String = ""
     
     override init() {
