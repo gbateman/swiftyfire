@@ -12,15 +12,17 @@ class Swiftifier {
     enum SwiftifierError: Error {
         case notAnObject
         case emptyArray
+        case nullArray
     }
     
     var swiftifiedJSON: String = ""
     
-    func swiftifyJSON(_ value: JSONValueNode) throws {
+    func swiftifyJSON(_ value: JSONValueNode, with name: String?) throws {
         var swiftOutput = ""
         if let object = value as? JSONObjectNode {
-            object.name = "TopLevelObject" // TODO: Replace with file name
+            object.name = name ?? "Object"
             self.giveNamesToNodes(in: object)
+            try self.giveElementTypesToArrays(in: object)
             swiftOutput += self.swiftifyObject(object)
         } else {
             throw SwiftifierError.notAnObject
@@ -44,14 +46,49 @@ class Swiftifier {
     }
     
     private func giveNamesToNodes(in node: JSONArrayNode) {
+        let elementName = node.name.capitalCased + "Element"
         for element in node.elements {
             if let object = element as? JSONObjectNode {
-                object.name = node.name.capitalCased
+                object.name = elementName
                 self.giveNamesToNodes(in: object)
             } else if let array = element as? JSONArrayNode {
-                array.name = node.name.capitalCased
+                array.name = elementName
                 self.giveNamesToNodes(in: array)
             }
+        }
+    }
+    
+    private func giveElementTypesToArrays(in node: JSONObjectNode) throws {
+        for key in node.children.keys {
+            guard let value = node.children[key] else { return }
+            
+            if let array = value as? JSONArrayNode {
+                try self.giveElementTypesToArrays(in: array)
+                try self.giveElementType(to: array)
+            }
+        }
+    }
+    
+    private func giveElementTypesToArrays(in node: JSONArrayNode) throws {
+        for element in node.elements {
+            if let array = element as? JSONArrayNode {
+                try self.giveElementTypesToArrays(in: array)
+                try self.giveElementType(to: array)
+            }
+        }
+    }
+    
+    private func giveElementType(to array: JSONArrayNode) throws {
+        guard let first = array.elements.first else { throw SwiftifierError.emptyArray }
+        
+        if let _ = first as? JSONNullNode {
+            throw SwiftifierError.nullArray
+        } else if let subarray = first as? JSONArrayNode {
+            array.elementType = "[\(subarray.elementType)]"
+        } else if let object = first as? JSONObjectNode {
+            array.elementType = object.name
+        } else {
+            array.elementType = first.type
         }
     }
     

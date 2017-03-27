@@ -8,31 +8,50 @@
 
 import Foundation
 
+enum FileError: Error {
+    case unableToFindFile
+}
+
 func main() {
-    print("Enter input file:")
-    var input = ""
-    while let line = readLine(strippingNewline: true) {
-        input += line
-    }
-    let ignorableCharacters = CharacterSet.controlCharacters.union(CharacterSet.whitespacesAndNewlines)
-    input = input.trimmingCharacters(in: ignorableCharacters)
-    
     let tokenizer = Tokenizer()
     let parser = Parser()
     let swiftifier = Swiftifier()
+    
     do {
-        try tokenizer.tokenize(input)
-        print(tokenizer.tokens)
+        let input: (name: String?, text: String)
+        try input = getInput()
+        try tokenizer.tokenize(input.text)
         try parser.parse(tokens: tokenizer.tokens)
-        try swiftifier.swiftifyJSON(parser.topLevelNode)
+        try swiftifier.swiftifyJSON(parser.topLevelNode, with: input.name)
     } catch {
-        print("ERROR: \(error), Program will exit")
+        print("ERROR: \(error), program will exit")
         return
     }
     
+    printHeader()
+    printImports()
     print(swiftifier.swiftifiedJSON)
-    
-    print("end of output")
+}
+
+func getInput() throws -> (String?, String) {
+    var name: String? = nil
+    var text = ""
+    let arguments = CommandLine.arguments
+    if arguments.count < 2 {
+        while let line = readLine(strippingNewline: true) {
+            text += line
+        }
+        let ignorableCharacters = CharacterSet.controlCharacters.union(CharacterSet.whitespacesAndNewlines)
+        text = text.trimmingCharacters(in: ignorableCharacters)
+    } else {
+        do {
+            try text = String(contentsOfFile: arguments[1])
+            name = arguments[1]
+        } catch {
+            throw FileError.unableToFindFile
+        }
+    }
+    return (name, text)
 }
 
 func printHeader() {
@@ -40,8 +59,8 @@ func printHeader() {
     print("// model.swift")
     print("// project")
     print("//")
-    print("// Created by SwiftyJSON Model Maker on \(getDate())")
-    print("// SwiftyJSON Model Maker is a development tool made by Greg Bateman")
+    print("// Created by SwiftyFire on \(getDate())")
+    print("// SwiftyFire is a development tool made by Greg Bateman")
     print("// It was created to reduce the tedious amount of time required to create")
     print("// JSON model classes when using SwiftyJSON to parse JSON in swift")
     print("//")
