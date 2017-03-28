@@ -1,0 +1,1 @@
+swiftc StringUtils.swift JSONNodes.swift Tokenizer.swift Parser.swift Swiftifier.swift main.swift -o SwiftyFire
