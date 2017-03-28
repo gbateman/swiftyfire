@@ -212,6 +212,16 @@ class Tokenizer {
                 && self.illegalStringTransitions.filter(filter).first == nil
         }
         
+        func isCompleteNonStringToken() -> Bool {
+            return currentState == .string && Token(kind: .stringLiteral, string: currentString).kind != .stringLiteral
+        }
+        
+        func addToken() {
+            self.tokens.append(Token(kind: Kind(currentState), string: currentString))
+            currentString = ""
+            currentState = .start
+        }
+        
         guard let eotScalar = UnicodeScalar(4) else { return }
         let eot = Character(eotScalar)
         
@@ -223,25 +233,24 @@ class Tokenizer {
                 continue
             }
             
-            if let transition = self.transitions.filter(filter).first {
+            if isControlCharacter() {
+                throw TokenizerError.illegalChar(currentChar)
+            } else if let transition = self.transitions.filter(filter).first {
                 if currentState == .string {
-                    self.tokens.append(Token(kind: Kind(currentState), string: currentString))
-                    currentString = ""
-                    currentState = .start
+                    addToken()
                     continue
                 } else {
                     currentString += String(currentChar)
                     currentState = transition.end
                 }
-            } else if isControlCharacter() {
-                throw TokenizerError.illegalChar(currentChar)
+            } else if isCompleteNonStringToken() {
+                addToken()
+                continue
             } else if isValidStringTransition() {
                 currentString += String(currentChar)
                 currentState = .string
             } else {
-                self.tokens.append(Token(kind: Kind(currentState), string: currentString))
-                currentString = ""
-                currentState = .start
+                addToken()
                 continue
             }
             

@@ -253,6 +253,8 @@ class Parser {
             bool.value = false
         }
         
+        tokens.removeFirst()
+        
         return bool
     }
     

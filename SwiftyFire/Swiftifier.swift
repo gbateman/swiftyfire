@@ -46,7 +46,7 @@ class Swiftifier {
     }
     
     private func giveNamesToNodes(in node: JSONArrayNode) {
-        let elementName = node.name.capitalCased + "Element"
+        let elementName = node.name + "Element"
         for element in node.elements {
             if let object = element as? JSONObjectNode {
                 object.name = elementName
