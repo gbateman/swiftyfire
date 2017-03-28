@@ -45,7 +45,8 @@ func getInput() throws -> (String?, String) {
         text = text.trimmingCharacters(in: ignorableCharacters)
     } else {
         do {
-            try text = String(contentsOfFile: arguments[1])
+            try text = String(contentsOfFile: arguments[1], encoding: .utf8)
+            text = text.replacingOccurrences(of: "\n", with: "")
             name = arguments[1]
         } catch {
             throw FileError.unableToFindFile

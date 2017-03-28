@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SwiftyJSONModelMaker.xcodeproj">
+      location = "self:/Users/Greg/Documents/Projects/Swift/SwiftyJSONModelMaker/SwiftyFire.xcodeproj">
    </FileRef>
 </Workspace>

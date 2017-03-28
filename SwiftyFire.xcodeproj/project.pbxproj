@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF40C1E6A5F2C00C39C16 /* main.swift */; };
-		372AF4141E6A670000C39C16 /* JSONNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4131E6A670000C39C16 /* JSONNodes.swift */; };
-		372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372AF4151E6B99DB00C39C16 /* StringUtils.swift */; };
-		374D7F971E78C32300752B3E /* Swiftifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D7F961E78C32300752B3E /* Swiftifier.swift */; };
-		37A0BFA91E6D205E00EF9F07 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */; };
-		37A0BFAB1E748A7D00EF9F07 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFAA1E748A7D00EF9F07 /* Parser.swift */; };
+		37447DCB1E89F69C00953AC0 /* JSONNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC51E89F69C00953AC0 /* JSONNodes.swift */; };
+		37447DCC1E89F69C00953AC0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC61E89F69C00953AC0 /* main.swift */; };
+		37447DCD1E89F69C00953AC0 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC71E89F69C00953AC0 /* Parser.swift */; };
+		37447DCE1E89F69C00953AC0 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC81E89F69C00953AC0 /* StringUtils.swift */; };
+		37447DCF1E89F69C00953AC0 /* Swiftifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC91E89F69C00953AC0 /* Swiftifier.swift */; };
+		37447DD01E89F69C00953AC0 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DCA1E89F69C00953AC0 /* Tokenizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,13 +28,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftyJSONModelMaker; sourceTree = BUILT_PRODUCTS_DIR; };
-		372AF40C1E6A5F2C00C39C16 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		372AF4131E6A670000C39C16 /* JSONNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONNodes.swift; sourceTree = "<group>"; };
-		372AF4151E6B99DB00C39C16 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		374D7F961E78C32300752B3E /* Swiftifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swiftifier.swift; sourceTree = "<group>"; };
-		37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
-		37A0BFAA1E748A7D00EF9F07 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		372AF4091E6A5F2C00C39C16 /* SwiftyFire */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftyFire; sourceTree = BUILT_PRODUCTS_DIR; };
+		37447DC51E89F69C00953AC0 /* JSONNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNodes.swift; path = SwiftyFire/JSONNodes.swift; sourceTree = SOURCE_ROOT; };
+		37447DC61E89F69C00953AC0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = SwiftyFire/main.swift; sourceTree = SOURCE_ROOT; };
+		37447DC71E89F69C00953AC0 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = SwiftyFire/Parser.swift; sourceTree = SOURCE_ROOT; };
+		37447DC81E89F69C00953AC0 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = SwiftyFire/StringUtils.swift; sourceTree = SOURCE_ROOT; };
+		37447DC91E89F69C00953AC0 /* Swiftifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swiftifier.swift; path = SwiftyFire/Swiftifier.swift; sourceTree = SOURCE_ROOT; };
+		37447DCA1E89F69C00953AC0 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tokenizer.swift; path = SwiftyFire/Tokenizer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 		372AF4001E6A5F2C00C39C16 = {
 			isa = PBXGroup;
 			children = (
-				372AF40B1E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+				372AF40B1E6A5F2C00C39C16 /* SwiftyFire */,
 				372AF40A1E6A5F2C00C39C16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,30 +59,31 @@
 		372AF40A1E6A5F2C00C39C16 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+				372AF4091E6A5F2C00C39C16 /* SwiftyFire */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		372AF40B1E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {
+		372AF40B1E6A5F2C00C39C16 /* SwiftyFire */ = {
 			isa = PBXGroup;
 			children = (
-				372AF4151E6B99DB00C39C16 /* StringUtils.swift */,
-				372AF4131E6A670000C39C16 /* JSONNodes.swift */,
-				37A0BFA81E6D205E00EF9F07 /* Tokenizer.swift */,
-				37A0BFAA1E748A7D00EF9F07 /* Parser.swift */,
-				374D7F961E78C32300752B3E /* Swiftifier.swift */,
-				372AF40C1E6A5F2C00C39C16 /* main.swift */,
+				37447DC81E89F69C00953AC0 /* StringUtils.swift */,
+				37447DC51E89F69C00953AC0 /* JSONNodes.swift */,
+				37447DCA1E89F69C00953AC0 /* Tokenizer.swift */,
+				37447DC71E89F69C00953AC0 /* Parser.swift */,
+				37447DC91E89F69C00953AC0 /* Swiftifier.swift */,
+				37447DC61E89F69C00953AC0 /* main.swift */,
 			);
+			name = SwiftyFire;
 			path = SwiftyJSONModelMaker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		372AF4081E6A5F2C00C39C16 /* SwiftyJSONModelMaker */ = {
+		372AF4081E6A5F2C00C39C16 /* SwiftyFire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyJSONModelMaker" */;
+			buildConfigurationList = 372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyFire" */;
 			buildPhases = (
 				372AF4051E6A5F2C00C39C16 /* Sources */,
 				372AF4061E6A5F2C00C39C16 /* Frameworks */,
@@ -92,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftyJSONModelMaker;
+			name = SwiftyFire;
 			productName = SwiftyJSONModelMaker;
-			productReference = 372AF4091E6A5F2C00C39C16 /* SwiftyJSONModelMaker */;
+			productReference = 372AF4091E6A5F2C00C39C16 /* SwiftyFire */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -109,11 +110,12 @@
 				TargetAttributes = {
 					372AF4081E6A5F2C00C39C16 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyJSONModelMaker" */;
+			buildConfigurationList = 372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyFire" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -125,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				372AF4081E6A5F2C00C39C16 /* SwiftyJSONModelMaker */,
+				372AF4081E6A5F2C00C39C16 /* SwiftyFire */,
 			);
 		};
 /* End PBXProject section */
@@ -135,12 +137,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				372AF4161E6B99DB00C39C16 /* StringUtils.swift in Sources */,
-				37A0BFA91E6D205E00EF9F07 /* Tokenizer.swift in Sources */,
-				37A0BFAB1E748A7D00EF9F07 /* Parser.swift in Sources */,
-				372AF40D1E6A5F2C00C39C16 /* main.swift in Sources */,
-				372AF4141E6A670000C39C16 /* JSONNodes.swift in Sources */,
-				374D7F971E78C32300752B3E /* Swiftifier.swift in Sources */,
+				37447DCE1E89F69C00953AC0 /* StringUtils.swift in Sources */,
+				37447DD01E89F69C00953AC0 /* Tokenizer.swift in Sources */,
+				37447DCC1E89F69C00953AC0 /* main.swift in Sources */,
+				37447DCB1E89F69C00953AC0 /* JSONNodes.swift in Sources */,
+				37447DCD1E89F69C00953AC0 /* Parser.swift in Sources */,
+				37447DCF1E89F69C00953AC0 /* Swiftifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +240,10 @@
 		372AF4111E6A5F2D00C39C16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -246,6 +251,8 @@
 		372AF4121E6A5F2D00C39C16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -254,7 +261,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyJSONModelMaker" */ = {
+		372AF4041E6A5F2C00C39C16 /* Build configuration list for PBXProject "SwiftyFire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				372AF40E1E6A5F2C00C39C16 /* Debug */,
@@ -263,7 +270,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyJSONModelMaker" */ = {
+		372AF4101E6A5F2D00C39C16 /* Build configuration list for PBXNativeTarget "SwiftyFire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				372AF4111E6A5F2D00C39C16 /* Debug */,
