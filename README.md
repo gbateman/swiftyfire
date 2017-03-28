@@ -1,1 +1,2 @@
-# SwiftyJSONModelMaker
+# SwiftyFire
+###### :fire:
