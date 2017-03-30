@@ -16,6 +16,10 @@ class Swiftifier {
     }
     
     var swiftifiedJSON: String = ""
+    var indentLevel = 0
+    var indentString: String {
+        return String(repeating: " ", count: self.indentLevel * 4)
+    }
     
     func swiftifyJSON(_ value: JSONValueNode, with name: String?) throws {
         var swiftOutput = ""
@@ -97,10 +101,12 @@ class Swiftifier {
             var swiftOutput = ""
             for key in object.children.keys {
                 if let value: JSONValueNode = object.children[key] {
-                    if let array = value as? JSONArrayNode {
-                        swiftOutput += "var \(key.camelCased): [\(array.elementType)]\n"
+                    if let object = value as? JSONObjectNode {
+                        swiftOutput += self.indentString + "var \(key.camelCased): \(object.name)\n"
+                    } else if let array = value as? JSONArrayNode {
+                        swiftOutput += self.indentString + "var \(key.camelCased): [\(array.elementType)]\n"
                     } else {
-                        swiftOutput += "var \(key.camelCased): \(value.type)\n"
+                        swiftOutput += self.indentString + "var \(key.camelCased): \(value.type)\n"
                     }
                 }
             }
@@ -109,34 +115,38 @@ class Swiftifier {
         }
         
         func swiftifyInit() -> String {
-            var swiftOutput = "init(json: JSON) {\n"
+            var swiftOutput = self.indentString + "init(json: JSON) {\n"
+            self.indentLevel += 1
             for key in object.children.keys {
                 if let value: JSONValueNode = object.children[key] {
                     swiftOutput += swiftifyValueInstantiation(for: key, and: value)
                 }
             }
-            swiftOutput += "}\n"
+            self.indentLevel -= 1
+            swiftOutput += self.indentString + "}\n"
             return swiftOutput
         }
         
         func swiftifyValueInstantiation(for key: String, and value: JSONValueNode) -> String {
             var swiftOutput = ""
-            swiftOutput += "self.\(key.camelCased) = \(swiftifyAssignment(for: "json[\"\(key)\"]", and: value))"
+            swiftOutput += self.indentString + "self.\(key.camelCased) = \(swiftifyAssignment(for: "json[\"\(key)\"]", and: value))"
             return swiftOutput
         }
         
         func swiftifyAssignment(for key: String, and value: JSONValueNode) -> String {
             var swiftOutput = ""
             if let object = value as? JSONObjectNode {
-                swiftOutput += "\(object.type)(json: \(key))\n"
+                swiftOutput += "\(object.name)(json: \(key))\n"
             } else if let array = value as? JSONArrayNode {
                 swiftOutput += "\(key).arrayValue.map({ element in\n"
+                self.indentLevel += 1
                 if let first = array.elements.first {
-                    swiftOutput += "return \(swiftifyAssignment(for: "element", and: first))"
+                    swiftOutput += self.indentString + "return \(swiftifyAssignment(for: "element", and: first))"
                 } else {
-                    swiftOutput += "return 0\n"
+                    swiftOutput += self.indentString + "return 0\n"
                 }
-                swiftOutput += "})\n"
+                self.indentLevel -= 1
+                swiftOutput += self.indentString + "})\n"
             } else {
                 swiftOutput += "\(key).\(value.type.lowercased())Value\n"
             }
@@ -147,18 +157,27 @@ class Swiftifier {
             var swiftOutput: String = ""
             for key in object.children.keys {
                 if let value = object.children[key] as? JSONObjectNode {
-                    swiftOutput += swiftifyObject(value)
+                    swiftOutput += "\n\(swiftifyObject(value))"
+                } else if var value = object.children[key] as? JSONArrayNode {
+                    while let first = value.elements.first as? JSONArrayNode {
+                        value = first
+                    }
+                    if let first = value.elements.first as? JSONObjectNode {
+                        swiftOutput += "\n\(swiftifyObject(first))"
+                    }
                 }
             }
             return swiftOutput
         }
         
         var swiftOutput = ""
-        swiftOutput += "class \(object.name) {\n"
+        swiftOutput += self.indentString + "class \(object.name) {\n"
+        self.indentLevel += 1
         swiftOutput += swiftifyVariableDeclarations()
         swiftOutput += swiftifyInit()
         swiftOutput += swiftifyClassDeclarations()
-        swiftOutput += "}\n"
+        self.indentLevel -= 1
+        swiftOutput += self.indentString + "}\n"
         return swiftOutput
     }
 }
