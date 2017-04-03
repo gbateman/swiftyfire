@@ -2,8 +2,19 @@ body {
     color: #FFFFFF;
     background-color: #FF7800;
     width: 83%;
+    height: 100vh;
     margin: 0 auto;
     font-family: 'Helvetica Neue';
+    /* For browsers that do not support gradients */
+    background: red;
+    /* For Safari 5.1 to 6.0 */
+    background: -webkit-linear-gradient(orange, red);
+    /* For Opera 11.1 to 12.0 */
+    background: -o-linear-gradient(orange, red);
+    /* For Firefox 3.6 to 15 */
+    background: -moz-linear-gradient(orange, red);
+    /* Standard syntax */
+    background: linear-gradient(orange, red);
 }
 
 textarea {
