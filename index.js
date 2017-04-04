@@ -14,10 +14,15 @@ app.get('/', function(request, response) {
   response.render('index');
 });
 
+app.post('/json', function(request, response) {
+  response.render('index');
+});
+
 app.listen(app.get('port'), function() {
   console.log('App is running on port: ', app.get('port'));
 });
 
-function onclick() {
-  downloadCount++;
+function submitButtonAction() {
+  const textArea = document.getElementById('main_area');
+  const input = textArea.innerHTML;
 }
