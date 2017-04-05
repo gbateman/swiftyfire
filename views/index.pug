@@ -5,16 +5,10 @@ html(lang='en')
     link(rel='stylesheet', href='codemirror.css')
     link(rel='stylesheet', href='swiftyfire.css')
     script(src='codemirror.js')
-  body(onload='loadTextArea()')
+    script(src='helpers.js')
+  body(onload='loadCodeMirrorTextArea()')
     h1 &#128293; SwiftyFire
-    #main_area
-      textarea#text_area
-    button submit
-    script.
-      let loadTextArea = function() {
-        var textArea = document.getElementById('text_area');
-        var editor = CodeMirror.fromTextArea(textArea, {
-          lineNumbers: true,
-          theme: "swiftyfire"
-        });
-      };
+    form(action='/download/'+id+'/')
+      #main_area
+        textarea(name='text_area')#text_area
+      button submit

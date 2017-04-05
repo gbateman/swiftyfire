@@ -1,9 +1,14 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const uuid = require('uuid/v4');
 const app = express();
 
 let downloadCount = 0;
 
 app.set('port', process.env.PORT || 5000);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
 
@@ -11,11 +16,12 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 app.get('/', function(request, response) {
-  response.render('index');
+  const id = uuid();
+  response.render('index', {id: id});
 });
 
-app.post('/json', function(request, response) {
-  response.render('index');
+app.get('/download/:id', function(request, response) {
+  response.render('download', {id: request.params.id});
 });
 
 app.listen(app.get('port'), function() {
