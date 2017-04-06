@@ -28,25 +28,20 @@ app.post('/download/:id', function(request, response) {
   exec('mkdir download/' + request.params.id, function(error, stdout, stderr) {
     const path = 'download/' + request.params.id + '/';
     if (!error) {
-      exec('echo "' + request.body.text_area + '" >> ' + path + 'Object.json',
+      exec('echo \'' + request.body.text_area + '\' >> ' + path + 'Object.json',
         function(error, stdout, stderr) {
           if (!error) {
             exec('swift/SwiftyFire/SwiftyFire < ' + path + 'Object.json > ' + path + 'Object.swift',
               function(error, stdout, stderr) {
                 if (!error) {
-                  const file = fs.createReadStream(path + 'Object.swift');
-                  const download = fs.createWriteStream('Object.swift');
-                  file.pipe(download);
+                  response.download(path + 'Object.swift', 'Object.swift');
+                  exec('rm -rf download/*', function(error, stdout, stderr) {});
                 }
               });
-            // response.render('download', {
-            //   id: request.params.id
-            // });
           }
         });
     }
   });
-  // response.sendStatus(404);
 });
 
 app.listen(app.get('port'), function() {
