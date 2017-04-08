@@ -35,7 +35,7 @@ app.post('/download/:id', function(request, response) {
               function(error, stdout, stderr) {
                 if (!error) {
                   response.download(path + 'Object.swift', 'Object.swift');
-                  exec('rm -rf download/*', function(error, stdout, stderr) {});
+                  exec('rm -rf ' + path, function(error, stdout, stderr) {});
                 }
               });
           }
