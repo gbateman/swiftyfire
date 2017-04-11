@@ -1,9 +1,7 @@
 body {
     color: #FFFFFF;
     background-color: #FF7800;
-    width: 75vw;
     height: 100vh;
-    margin: 0 auto;
     font-family: 'Helvetica Neue';
     /* For browsers that do not support gradients */
     background: #F05138;
