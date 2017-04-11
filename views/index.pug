@@ -8,7 +8,7 @@ html(lang='en')
     script(src='helpers.js')
   body(onload='loadCodeMirrorTextArea()')
     h1 &#128293; SwiftyFire
-    form(action=baseUrl+'/download/'+id+'/' method='post')
+    form(action='/download/'+id+'/' method='post')
       #main_area
         textarea(name='text_area')#text_area
       button submit

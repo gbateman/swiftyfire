@@ -176,7 +176,7 @@ class Swiftifier {
         swiftOutput += swiftifyInit()
         swiftOutput += swiftifyClassDeclarations()
         self.indentLevel -= 1
-        swiftOutput += self.indentString + "}\n"
+        swiftOutput += self.indentString + "}" // Newline added by print()
         return swiftOutput
     }
 }
