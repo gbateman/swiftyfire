@@ -20,7 +20,6 @@ app.set('view engine', 'pug');
 app.get('/', function(request, response) {
   const id = uuid();
   response.render('index', {
-    baseUrl,
     id
   });
 });
