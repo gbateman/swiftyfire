@@ -5,6 +5,9 @@ const exec = require('child_process').exec;
 const fs = require('fs');
 const app = express();
 
+const baseUrl =
+  process.env.NODE_ENV === 'production' ? 'www.swiftyfire.com' : '';
+
 app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.urlencoded({
@@ -20,7 +23,8 @@ app.set('view engine', 'pug');
 app.get('/', function(request, response) {
   const id = uuid();
   response.render('index', {
-    id: id
+    baseUrl,
+    id
   });
 });
 
