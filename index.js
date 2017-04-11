@@ -33,6 +33,7 @@ app.post('/download/:id', function(request, response) {
       exec('echo \'' + request.body.text_area + '\' >> ' + path + 'Object.json',
         function(error, stdout, stderr) {
           if (!error) {
+            console.log('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' + path + 'Object.json > ' + path + 'Object.swift');
             exec('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' + path + 'Object.json > ' + path + 'Object.swift',
               function(error, stdout, stderr) {
                 if (!error) {
