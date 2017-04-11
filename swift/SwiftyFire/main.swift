@@ -13,21 +13,21 @@ func main() {
     let tokenizer = Tokenizer()
     let parser = Parser()
     let swiftifier = Swiftifier()
-    
+
     do {
         let input: (name: String?, text: String)
         try input = getInput()
         name = input.name
         let text = input.text
-        
+
         try tokenizer.tokenize(text)
         try parser.parse(tokens: tokenizer.tokens)
         try swiftifier.swiftifyJSON(parser.topLevelNode, with: name)
     } catch {
-        print("ERROR: \(error), program will exit")
+        fputs("ERROR: \(error), program will exit\n", stderr)
         return
     }
-    
+
     printHeader(with: name)
     printImports()
     print(swiftifier.swiftifiedJSON)
