@@ -1,18 +1,20 @@
 doctype html
 html(lang='en')
   head
+    link(href='css/bootstrap.min.css', rel='stylesheet')
     link(href='css/style.css', rel='stylesheet')
     link(href='css/codemirror.css', rel='stylesheet')
     link(href='css/swiftyfire.css', rel='stylesheet')
-    link(href='css/bootstrap.min.css', rel='stylesheet')
     script(src='js/codemirror.js')
     script(src='js/helpers.js')
   body(onload='loadCodeMirrorTextArea()')
-    .navbar.navbar-inverse
-    h1 &#128293; SwiftyFire
-    form(action='/download/'+id+'/' method='post')
-      #main_area
-        textarea(name='text_area')#text_area
-      button submit
+    .navbar.navbar-inverse 
+      .navbar-brand SwiftyFire
+    .container-fluid
+      .row
+        form.col-xs-12.col-sm-10.col-sm-offset-1(action='/download/'+id+'/' method='post')
+          #main_area
+            textarea(name='text_area')#text_area
+          button submit
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='js/bootstrap.min.js')
