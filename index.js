@@ -7,6 +7,7 @@ const app = express();
 
 const systemPrefix = process.env.NODE_ENV === 'production' ? 'linux-' : '';
 
+
 app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.urlencoded({
@@ -33,12 +34,18 @@ app.post('/download/:id', function(request, response) {
       exec('echo \'' + request.body.text_area + '\' >> ' + path + 'Object.json',
         function(error, stdout, stderr) {
           if (!error) {
-            console.log('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' + path + 'Object.json > ' + path + 'Object.swift');
-            exec('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' + path + 'Object.json > ' + path + 'Object.swift',
+            exec('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' +
+              path + 'Object.json > ' + path + 'Object.swift', {
+                env: {
+                  'LD_LIBRARY_PATH': __dirname + '/linux-libs'
+                }
+              },
               function(error, stdout, stderr) {
                 if (!error) {
                   response.download(path + 'Object.swift', 'Object.swift');
                   exec('rm -rf ' + path, function(error, stdout, stderr) {});
+                } else {
+                  response.status(400).end();
                 }
               });
           }
