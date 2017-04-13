@@ -1,5 +1,1 @@
-swiftc StringUtils.swift JSONNodes.swift Tokenizer.swift Parser.swift Swiftifier.swift main.swift -o linux-SwiftyFire
-
-mkdir linux-libs
-
-cp /usr/lib/swift/linux/*.so linux-libs/
+swiftc -L -lFoundation StringUtils.swift JSONNodes.swift Tokenizer.swift Parser.swift Swiftifier.swift main.swift -o linux-SwiftyFire
