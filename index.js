@@ -57,8 +57,3 @@ app.post('/download/:id', function(request, response) {
 app.listen(app.get('port'), function() {
   console.log('App is running on port: ', app.get('port'));
 });
-
-function submitButtonAction() {
-  const textArea = document.getElementById('main_area');
-  const input = textArea.innerHTML;
-}
