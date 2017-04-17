@@ -37,7 +37,7 @@ app.post('/download/:id', function(request, response) {
             exec('swift/SwiftyFire/' + systemPrefix + 'SwiftyFire < ' +
               path + 'Object.json > ' + path + 'Object.swift', {
                 env: {
-                  'LD_LIBRARY_PATH': __dirname + '/swift/SwiftyFire/linux-libs'
+                  'LD_LIBRARY_PATH': '/usr/local/lib64/:' + __dirname + '/swift/SwiftyFire/linux-libs'
                 }
               },
               function(error, stdout, stderr) {
