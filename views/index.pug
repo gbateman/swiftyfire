@@ -8,15 +8,13 @@ html(lang='en')
     script(src='js/codemirror.js')
     script(src='js/helpers.js')
   body(onload='loadCodeMirrorTextArea()')
-    nav.navbar.navbar-inverse 
-      .container-fluid
-        .navbar-brand SwiftyFire
+    include navbar.pug
     .container-fluid
       form(action='/download/'+id+'/' method='post')
         .row
           #main_area.shadow.col-xs-12.col-sm-10.col-sm-offset-1
             textarea(name='text_area')#text_area
-        .row.top-space
+        .row
           button.shadow.col-xs-12.col-sm-10.col-sm-offset-1(type='submit') download swift model
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='js/bootstrap.min.js')
