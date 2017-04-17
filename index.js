@@ -28,7 +28,7 @@ app.get('/', function(request, response) {
 });
 
 app.post('/download/:id', function(request, response) {
-  exec('mkdir download/' + request.params.id, function(error, stdout, stderr) {
+  exec('mkdir -p download/' + request.params.id, function(error, stdout, stderr) {
     const path = 'download/' + request.params.id + '/';
     if (!error) {
       exec('echo \'' + request.body.text_area + '\' >> ' + path + 'Object.json',
@@ -45,11 +45,18 @@ app.post('/download/:id', function(request, response) {
                   response.download(path + 'Object.swift', 'Object.swift');
                   exec('rm -rf ' + path, function(error, stdout, stderr) {});
                 } else {
+                  console.log(error);
                   response.status(400).end();
                 }
               });
+          } else {
+            console.log(error);
+            response.status(400).end();
           }
         });
+    } else {
+      console.log(error);
+      response.status(400).end();
     }
   });
 });
