@@ -42,8 +42,9 @@ app.post('/download/:id', function(request, response) {
               },
               function(error, stdout, stderr) {
                 if (!error) {
-                  response.download(path + 'Object.swift', 'Object.swift');
-                  exec('rm -rf ' + path, function(error, stdout, stderr) {});
+                  response.download(path + 'Object.swift', 'Object.swift', function (error) {
+                    exec('rm -rf ' + path, function(error, stdout, stderr) {});
+                  });
                 } else {
                   console.log(error);
                   response.status(400).end();
