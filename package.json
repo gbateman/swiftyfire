@@ -1,7 +1,8 @@
 {
-  "name": "swifty-fire",
+  "name": "swiftyfire",
   "version": "0.0.0",
   "description": "An express app serving www.swiftyfire.com",
+  "license" : "MIT",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
