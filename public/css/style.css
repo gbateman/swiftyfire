@@ -1,17 +1,13 @@
+html {
+    height: 100%;
+}
+
 body {
     color: #FFFFFF;
-    background-color: #FF7800;
-    height: 100vh;
-    font-family: 'Helvetica Neue';
+    height: 100%;
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     /* For browsers that do not support gradients */
     background: #F05138;
-    /* For Safari 5.1 to 6.0 */
-    background: -webkit-linear-gradient(orange, #F05138, red);
-    /* For Opera 11.1 to 12.0 */
-    background: -o-linear-gradient(orange, #F05138, red);
-    /* For Firefox 3.6 to 15 */
-    background: -moz-linear-gradient(orange, #F05138, red);
-    /* Standard syntax */
     background: linear-gradient(orange, #F05138, red);
 }
 
@@ -20,25 +16,33 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+input {
+    border: none;
+    resize: none;
+    background-color: #282C34;
+    color: #A4ABB7;
+    font-size: 14pt;
+    font-family: courier;
+    padding-left: 33px !important;
+}
+
+input:focus {
+    outline: none;
+}
+
 #main_area {
     border: none;
     resize: none;
     padding: 0px;
-    /*transition: all 0.3s cubic-bezier(.25, .8, .25, 1);*/
 }
-
-/*#main_area:focus {
-    outline: none;
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
-}*/
 
 button {
     background-color: #FF7800;
     color: #FFFFFF;
     border: 2px solid #FFFFFF;
     /* Safari */
-    /*-webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;*/
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
     font-size: 16pt;
 }
 
@@ -53,6 +57,7 @@ button:focus {
 }
 
 /*bootstrap overloads*/
+
 .navbar {
     border-radius: 0px;
     margin-bottom: 0px;
@@ -66,7 +71,6 @@ footer {
     font-size: 10px;
     color: #FFFFFF;
     opacity: 0.7;
-    padding: 10px;
     margin-top: 20px;
 }
 
