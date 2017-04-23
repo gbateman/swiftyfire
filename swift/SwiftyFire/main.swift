@@ -24,7 +24,7 @@ func main() {
         try parser.parse(tokens: tokenizer.tokens)
         try swiftifier.swiftifyJSON(parser.topLevelNode, with: name)
     } catch {
-        fputs("ERROR: \(error), program will exit\n", stderr)
+        print("ERROR: \(error), program will exit\n")
         return
     }
 
@@ -46,11 +46,17 @@ func getInput() throws -> (String?, String) {
     } else { // Input from file
         do {
             try text = String(contentsOfFile: arguments[1], encoding: .utf8)
-            text = text.replacingOccurrences(of: "\n", with: "")
+            text = text.components(separatedBy: "\r").joined(separator: "")
+            text = text.components(separatedBy: "\n").joined(separator: "")
+            text = text.components(separatedBy: "\t").joined(separator: "  ")
             name = arguments[1]
-            if let range = name?.range(of: ".") {
-                name = name?.substring(to: range.lowerBound).capitalCased
+            while let range = name?.range(of: "/") {
+                name = name?.substring(from: range.upperBound)
             }
+            if let range = name?.range(of: ".") {
+                name = name?.substring(to: range.lowerBound)
+            }
+            name = name?.capitalCased
         } catch {
             throw error
         }

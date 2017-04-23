@@ -156,13 +156,13 @@ class Swiftifier {
             var swiftOutput: String = ""
             for key in object.children.keys {
                 if let value = object.children[key] as? JSONObjectNode {
-                    swiftOutput += "\n\(swiftifyObject(value))"
+                    swiftOutput += "\n\(swiftifyObject(value))\n"
                 } else if var value = object.children[key] as? JSONArrayNode {
                     while let first = value.elements.first as? JSONArrayNode {
                         value = first
                     }
                     if let first = value.elements.first as? JSONObjectNode {
-                        swiftOutput += "\n\(swiftifyObject(first))"
+                        swiftOutput += "\n\(swiftifyObject(first))\n"
                     }
                 }
             }
