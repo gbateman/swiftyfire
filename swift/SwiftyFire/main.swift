@@ -46,9 +46,12 @@ func getInput() throws -> (String?, String) {
     } else { // Input from file
         do {
             try text = String(contentsOfFile: arguments[1], encoding: .utf8)
-            text = text.components(separatedBy: "\r").joined(separator: "")
-            text = text.components(separatedBy: "\n").joined(separator: "")
-            text = text.components(separatedBy: "\t").joined(separator: "  ")
+            // These commands are apparently not usable in the current version of
+            // Swift on linux - or I couldn't find the library to link them properly
+            // but the characters are handled accordingly in the tokenizer
+//            text = text.components(separatedBy: "\r").joined(separator: "")
+//            text = text.components(separatedBy: "\n").joined(separator: "")
+//            text = text.components(separatedBy: "\t").joined(separator: "  ")
             name = arguments[1]
             while let range = name?.range(of: "/") {
                 name = name?.substring(from: range.upperBound)
@@ -71,7 +74,7 @@ func printHeader(with name: String?) {
     print("// Created by SwiftyFire on \(getDate())")
     print("// SwiftyFire is a development tool made by Greg Bateman")
     print("// It was created to reduce the tedious amount of time required to create")
-    print("// JSON model classes when using SwiftyJSON to parse JSON in swift")
+    print("// model classes when using SwiftyJSON to parse JSON in swift")
     print("//")
     print()
 }
