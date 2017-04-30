@@ -56,6 +56,18 @@ button:focus {
     outline: none;
 }
 
+.how-to-use {
+    font-size: 12pt;
+    font-family: courier;
+    color: #A4ABB7;
+    background-color: #282C34;
+    /*height: 80vh;*/
+}
+
+.how-to-use h2 {
+    margin: 15px auto;
+}
+
 /*bootstrap overloads*/
 
 .navbar {

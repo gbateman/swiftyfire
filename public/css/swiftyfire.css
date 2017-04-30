@@ -1,4 +1,5 @@
 .cm-s-swiftyfire.CodeMirror {background: #282C34; color: #A4ABB7;}
+.cm-s-swiftyfire.CodeMirror-empty {background: #282C34; color: #757575;}
 .cm-s-swiftyfire div.CodeMirror-selected {background: #404040 !important;}
 .cm-s-swiftyfire .CodeMirror-gutters {background: #282C34; border-right: 0px;}
 .cm-s-swiftyfire .CodeMirror-linenumber {color: #808080;}

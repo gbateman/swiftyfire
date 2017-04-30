@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    include favicon.pug
+    title SwiftyFire
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+  body
+    include navbar.pug
+    .container-fluid
+      .row
+        .how-to-use.col-xs-12.col-sm-10.col-sm-offset-1
+          h2 How to download a .swift model class
+          ol
+            li Copy and paste any json object into the main text area
+            li Enter a name for the top level object 
+            li Click on 'download swift model'
+            
+          h2 How to use this model in your code
+          ol
+            li Add the model to your project
+            li Make any network request using AlamoFire (Or another library)
+            li If it succeeds, create a SwiftyJSON object out of that response
+            li Pass the SwiftyJSON object into your new model's initializer
+            li You can now use this response as if it were a natively created object
+            
+          h2 Enjoy!!
+    include footer.pug
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='js/bootstrap.min.js')

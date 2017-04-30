@@ -8,19 +8,20 @@ html(lang='en')
     link(href='css/codemirror.css', rel='stylesheet')
     link(href='css/swiftyfire.css', rel='stylesheet')
     script(src='js/codemirror.js')
-    script(src='js/helpers.js')
-  body(onload='loadCodeMirrorTextArea()')
+    script(src='js/placeholder.js')
+  body
     include navbar.pug
     .container-fluid
       form(action='/download/'+id+'/' method='post')
         .row
           input.shadow.col-xs-12.col-sm-10.col-sm-offset-1(name='name', 
-            placeholder='Enter the name of the top level object here', autocomplete='off')
+            placeholder='Enter name of top level object here', autocomplete='off')
         .row
           #main_area.shadow.col-xs-12.col-sm-10.col-sm-offset-1
-            textarea(name='text_area')#text_area
+            textarea(name='text_area', placeholder="Enter json response here")#text_area
         .row
           button.shadow.col-xs-12.col-sm-10.col-sm-offset-1(type='submit') download swift model
     include footer.pug
+    script(src='js/helpers.js')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='js/bootstrap.min.js')

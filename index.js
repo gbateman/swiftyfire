@@ -26,6 +26,10 @@ app.get('/', function(request, response) {
   });
 });
 
+app.get('/howtouse', function(request, response) {
+  response.render('howtouse');
+});
+
 app.post('/download/:id', function(request, response) {
   const text = request.body.text_area;
   const name = request.body.name || 'Object';

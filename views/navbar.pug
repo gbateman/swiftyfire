@@ -1,3 +1,12 @@
 nav.navbar.navbar-inverse 
   .container-fluid
-    .navbar-brand SwiftyFire
+    .navbar-header
+      button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#buttons')
+        span(class='icon-bar')
+        span(class='icon-bar')
+        span(class='icon-bar')
+      a(href='/').navbar-brand SwiftyFire
+    .collapse.navbar-collapse#buttons
+      ul.nav.navbar-nav
+        li
+          a(href='/howtouse') How to Use
