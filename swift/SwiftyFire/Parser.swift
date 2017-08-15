@@ -263,6 +263,8 @@ class Parser {
         
         try self.requireNextTokenOfKind(.nullLiteral, from: tokens)
         
+        tokens.removeFirst()
+        
         return null
     }
 }

@@ -104,6 +104,8 @@ class Swiftifier {
                         swiftOutput += self.indentString + "var \(key.camelCased): \(object.name)\n"
                     } else if let array = value as? JSONArrayNode {
                         swiftOutput += self.indentString + "var \(key.camelCased): [\(array.elementType)]\n"
+                    } else if let _ = value as? JSONNullNode {
+                        continue
                     } else {
                         swiftOutput += self.indentString + "var \(key.camelCased): \(value.type)\n"
                     }
@@ -118,6 +120,9 @@ class Swiftifier {
             self.indentLevel += 1
             for key in object.children.keys {
                 if let value: JSONValueNode = object.children[key] {
+                    if let _ = value as? JSONNullNode {
+                        continue
+                    }
                     swiftOutput += swiftifyValueInstantiation(for: key, and: value)
                 }
             }
