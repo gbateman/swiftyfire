@@ -6,15 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		37447DCB1E89F69C00953AC0 /* JSONNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC51E89F69C00953AC0 /* JSONNodes.swift */; };
-		37447DCC1E89F69C00953AC0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC61E89F69C00953AC0 /* main.swift */; };
-		37447DCD1E89F69C00953AC0 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC71E89F69C00953AC0 /* Parser.swift */; };
-		37447DCE1E89F69C00953AC0 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC81E89F69C00953AC0 /* StringUtils.swift */; };
-		37447DCF1E89F69C00953AC0 /* Swiftifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DC91E89F69C00953AC0 /* Swiftifier.swift */; };
-		37447DD01E89F69C00953AC0 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37447DCA1E89F69C00953AC0 /* Tokenizer.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		372AF4071E6A5F2C00C39C16 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -29,12 +20,29 @@
 
 /* Begin PBXFileReference section */
 		372AF4091E6A5F2C00C39C16 /* SwiftyFire */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftyFire; sourceTree = BUILT_PRODUCTS_DIR; };
-		37447DC51E89F69C00953AC0 /* JSONNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNodes.swift; path = SwiftyFire/JSONNodes.swift; sourceTree = SOURCE_ROOT; };
-		37447DC61E89F69C00953AC0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = SwiftyFire/main.swift; sourceTree = SOURCE_ROOT; };
-		37447DC71E89F69C00953AC0 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = SwiftyFire/Parser.swift; sourceTree = SOURCE_ROOT; };
-		37447DC81E89F69C00953AC0 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = SwiftyFire/StringUtils.swift; sourceTree = SOURCE_ROOT; };
-		37447DC91E89F69C00953AC0 /* Swiftifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swiftifier.swift; path = SwiftyFire/Swiftifier.swift; sourceTree = SOURCE_ROOT; };
-		37447DCA1E89F69C00953AC0 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tokenizer.swift; path = SwiftyFire/Tokenizer.swift; sourceTree = SOURCE_ROOT; };
+		376E657120374BD2002915CD /* build */ = {isa = PBXFileReference; lastKnownFileType = text; path = build; sourceTree = "<group>"; };
+		376E657220374BD2002915CD /* JSONNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNodes.swift; sourceTree = "<group>"; };
+		376E657320374BD2002915CD /* linux-build */ = {isa = PBXFileReference; lastKnownFileType = text; path = "linux-build"; sourceTree = "<group>"; };
+		376E657520374BD2002915CD /* libbsd.so.0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = libbsd.so.0; sourceTree = "<group>"; };
+		376E657620374BD2002915CD /* libdispatch.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libdispatch.so; sourceTree = "<group>"; };
+		376E657720374BD2002915CD /* libFoundation.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libFoundation.so; sourceTree = "<group>"; };
+		376E657820374BD2002915CD /* libicudata.so.55 */ = {isa = PBXFileReference; lastKnownFileType = file; path = libicudata.so.55; sourceTree = "<group>"; };
+		376E657920374BD2002915CD /* libicui18n.so.55 */ = {isa = PBXFileReference; lastKnownFileType = file; path = libicui18n.so.55; sourceTree = "<group>"; };
+		376E657A20374BD2002915CD /* libicuuc.so.55 */ = {isa = PBXFileReference; lastKnownFileType = file; path = libicuuc.so.55; sourceTree = "<group>"; };
+		376E657B20374BD2002915CD /* libstdc++.so.6 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "libstdc++.so.6"; sourceTree = "<group>"; };
+		376E657C20374BD2002915CD /* libswiftCore.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libswiftCore.so; sourceTree = "<group>"; };
+		376E657D20374BD2002915CD /* libswiftGlibc.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libswiftGlibc.so; sourceTree = "<group>"; };
+		376E657E20374BD2002915CD /* libswiftRemoteMirror.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libswiftRemoteMirror.so; sourceTree = "<group>"; };
+		376E657F20374BD2002915CD /* libswiftSwiftOnoneSupport.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libswiftSwiftOnoneSupport.so; sourceTree = "<group>"; };
+		376E658020374BD2002915CD /* libXCTest.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libXCTest.so; sourceTree = "<group>"; };
+		376E658120374BD2002915CD /* linux-SwiftyFire */ = {isa = PBXFileReference; lastKnownFileType = file; path = "linux-SwiftyFire"; sourceTree = "<group>"; };
+		376E658220374BD2002915CD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		376E658320374BD2002915CD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		376E658420374BD2002915CD /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		376E658520374BD2002915CD /* Swiftifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swiftifier.swift; sourceTree = "<group>"; };
+		376E658620374BD2002915CD /* SwiftyFire */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = SwiftyFire; sourceTree = "<group>"; };
+		376E658720374BD2002915CD /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		376E658820374BD2002915CD /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +59,7 @@
 		372AF4001E6A5F2C00C39C16 = {
 			isa = PBXGroup;
 			children = (
-				372AF40B1E6A5F2C00C39C16 /* SwiftyFire */,
+				376E657020374BD2002915CD /* SwiftyFire */,
 				372AF40A1E6A5F2C00C39C16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,18 +72,42 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		372AF40B1E6A5F2C00C39C16 /* SwiftyFire */ = {
+		376E657020374BD2002915CD /* SwiftyFire */ = {
 			isa = PBXGroup;
 			children = (
-				37447DC81E89F69C00953AC0 /* StringUtils.swift */,
-				37447DC51E89F69C00953AC0 /* JSONNodes.swift */,
-				37447DCA1E89F69C00953AC0 /* Tokenizer.swift */,
-				37447DC71E89F69C00953AC0 /* Parser.swift */,
-				37447DC91E89F69C00953AC0 /* Swiftifier.swift */,
-				37447DC61E89F69C00953AC0 /* main.swift */,
+				376E657120374BD2002915CD /* build */,
+				376E657220374BD2002915CD /* JSONNodes.swift */,
+				376E657320374BD2002915CD /* linux-build */,
+				376E657420374BD2002915CD /* linux-libs */,
+				376E658120374BD2002915CD /* linux-SwiftyFire */,
+				376E658220374BD2002915CD /* main.swift */,
+				376E658320374BD2002915CD /* Parser.swift */,
+				376E658420374BD2002915CD /* StringUtils.swift */,
+				376E658520374BD2002915CD /* Swiftifier.swift */,
+				376E658620374BD2002915CD /* SwiftyFire */,
+				376E658720374BD2002915CD /* test.json */,
+				376E658820374BD2002915CD /* Tokenizer.swift */,
 			);
-			name = SwiftyFire;
-			path = SwiftyJSONModelMaker;
+			path = SwiftyFire;
+			sourceTree = "<group>";
+		};
+		376E657420374BD2002915CD /* linux-libs */ = {
+			isa = PBXGroup;
+			children = (
+				376E657520374BD2002915CD /* libbsd.so.0 */,
+				376E657620374BD2002915CD /* libdispatch.so */,
+				376E657720374BD2002915CD /* libFoundation.so */,
+				376E657820374BD2002915CD /* libicudata.so.55 */,
+				376E657920374BD2002915CD /* libicui18n.so.55 */,
+				376E657A20374BD2002915CD /* libicuuc.so.55 */,
+				376E657B20374BD2002915CD /* libstdc++.so.6 */,
+				376E657C20374BD2002915CD /* libswiftCore.so */,
+				376E657D20374BD2002915CD /* libswiftGlibc.so */,
+				376E657E20374BD2002915CD /* libswiftRemoteMirror.so */,
+				376E657F20374BD2002915CD /* libswiftSwiftOnoneSupport.so */,
+				376E658020374BD2002915CD /* libXCTest.so */,
+			);
+			path = "linux-libs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,12 +169,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37447DCE1E89F69C00953AC0 /* StringUtils.swift in Sources */,
-				37447DD01E89F69C00953AC0 /* Tokenizer.swift in Sources */,
-				37447DCC1E89F69C00953AC0 /* main.swift in Sources */,
-				37447DCB1E89F69C00953AC0 /* JSONNodes.swift in Sources */,
-				37447DCD1E89F69C00953AC0 /* Parser.swift in Sources */,
-				37447DCF1E89F69C00953AC0 /* Swiftifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

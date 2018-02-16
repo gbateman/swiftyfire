@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:../SwiftyFire"
+      name = "SwiftyFire">
+      <FileRef
+         location = "group:build">
+      </FileRef>
+      <FileRef
+         location = "group:JSONNodes.swift">
+      </FileRef>
+      <FileRef
+         location = "group:linux-build">
+      </FileRef>
+      <Group
+         location = "group:linux-libs"
+         name = "linux-libs">
+         <FileRef
+            location = "group:libbsd.so.0">
+         </FileRef>
+         <FileRef
+            location = "group:libdispatch.so">
+         </FileRef>
+         <FileRef
+            location = "group:libFoundation.so">
+         </FileRef>
+         <FileRef
+            location = "group:libicudata.so.55">
+         </FileRef>
+         <FileRef
+            location = "group:libicui18n.so.55">
+         </FileRef>
+         <FileRef
+            location = "group:libicuuc.so.55">
+         </FileRef>
+         <FileRef
+            location = "group:libstdc++.so.6">
+         </FileRef>
+         <FileRef
+            location = "group:libswiftCore.so">
+         </FileRef>
+         <FileRef
+            location = "group:libswiftGlibc.so">
+         </FileRef>
+         <FileRef
+            location = "group:libswiftRemoteMirror.so">
+         </FileRef>
+         <FileRef
+            location = "group:libswiftSwiftOnoneSupport.so">
+         </FileRef>
+         <FileRef
+            location = "group:libXCTest.so">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:linux-SwiftyFire">
+      </FileRef>
+      <FileRef
+         location = "group:main.swift">
+      </FileRef>
+      <FileRef
+         location = "group:Parser.swift">
+      </FileRef>
+      <FileRef
+         location = "group:StringUtils.swift">
+      </FileRef>
+      <FileRef
+         location = "group:Swiftifier.swift">
+      </FileRef>
+      <FileRef
+         location = "group:SwiftyFire">
+      </FileRef>
+      <FileRef
+         location = "group:test.json">
+      </FileRef>
+      <FileRef
+         location = "group:Tokenizer.swift">
+      </FileRef>
+   </Group>
    <FileRef
-      location = "self:/Users/Greg/Documents/Projects/Swift/SwiftyJSONModelMaker/SwiftyFire.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
