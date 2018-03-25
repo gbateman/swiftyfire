@@ -7,7 +7,7 @@ const app = express();
 
 const systemPrefix = process.env.NODE_ENV === 'production' ? 'linux-' : '';
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 8080);
 
 app.use(bodyParser.urlencoded({
   extended: false

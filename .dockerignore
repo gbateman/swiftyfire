@@ -1,0 +1,7 @@
+node_modules/
+npm-debug.log
+.DS_Store
+swift/
+!swift/SwiftyFire/linux-SwiftyFire
+!swift/SwiftyFire/linux-libs
+Procfile
