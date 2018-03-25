@@ -193,12 +193,13 @@ class Tokenizer {
     }
     
     func tokenize(_ input: String) throws {
+        // Initialization
         var currentIndex = input.startIndex
-        
         var currentString: String = ""
         var currentState: State = .start
         var currentChar: Character = input[currentIndex]
         
+        // Internal Helper Functions
         func filter(_ stateMap: StateMap) -> Bool {
             return stateMap.start == currentState && stateMap.char == String(currentChar)
         }
@@ -222,6 +223,7 @@ class Tokenizer {
             currentState = .start
         }
         
+        // Actual Tokenizing
         guard let eotScalar = UnicodeScalar(4) else { return }
         let eot = Character(eotScalar)
         

@@ -18,7 +18,6 @@ class JSONObjectNode: JSONValueNode {
 
     override init() {
         super.init()
-
         self.type = "Object"
     }
 }
@@ -30,7 +29,6 @@ class JSONArrayNode: JSONValueNode {
 
     override init() {
         super.init()
-
         self.type = "Array"
     }
 }
@@ -40,16 +38,15 @@ class JSONNumberNode: JSONValueNode {
 
     override init() {
         super.init()
-
         self.type = "Double"
     }
 }
 
 class JSONStringNode: JSONValueNode {
     var value: String = ""
+    
     override init() {
         super.init()
-
         self.type = "String"
     }
 }
@@ -59,7 +56,6 @@ class JSONBoolNode: JSONValueNode {
 
     override init() {
         super.init()
-
         self.type = "Bool"
     }
 }
@@ -67,7 +63,6 @@ class JSONBoolNode: JSONValueNode {
 class JSONNullNode: JSONValueNode {
     override init() {
         super.init()
-
         self.type = "null"
     }
 }
